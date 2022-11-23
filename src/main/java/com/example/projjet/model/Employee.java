@@ -2,6 +2,7 @@ package com.example.projjet.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -14,17 +15,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Employee implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String nom;
 	private int age;
 	private String mail;
 	private String password;
-	private String Role;
+	private   enum Roles {
+		chef_de_projet,
+		ouvrier,
+		ROLE_ADMIN
+	};
 	@OneToMany(fetch = FetchType.EAGER,mappedBy = "employee",cascade = CascadeType.REMOVE,orphanRemoval = true)
 	@JsonIgnore
 	private  Set<Projet> projet=new HashSet<>();
     @ManyToOne
 	private Tache tache ;
+	@OneToMany (mappedBy = "employee" , cascade = CascadeType.ALL)
+	private List<Message> messages;
+
 
 	
 	public Set<Projet> getProjet() {
@@ -92,14 +100,10 @@ public class Employee implements Serializable {
 	}
 
 
-	public String getRole() {
-		return Role;
-	}
 
 
-	public void setRole(String role) {
-		Role = role;
-	}
+
+
 
 
 	public Employee(long id, String nom, int age, String mail, String password, String role) {
@@ -109,7 +113,7 @@ public class Employee implements Serializable {
 		this.age = age;
 		this.mail = mail;
 		this.password = password;
-		Role = role;
+
 		
 	}
 

@@ -1,7 +1,6 @@
 package com.example.projjet.service;
 
 
-import com.example.projjet.model.Projet;
 import com.example.projjet.model.Tache;
 import com.example.projjet.repository.TacheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,7 @@ public class TacheService  {
     public Optional<Tache> findById(Long aLong) {
         return repository.findById(aLong);
     }
-   /* public Tache findByName(String nomTache) {
-        return repository.findBYNomtache(nomTache).get();
-    }
-*/
+
 
 
     public void deleteById(Long aLong) {
@@ -48,5 +44,6 @@ public class TacheService  {
     public void deleteAll() {
         repository.deleteAll();
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.projjet.controller;
 
+import com.example.projjet.model.Employee;
 import com.example.projjet.model.Projet;
 import com.example.projjet.model.Tache;
 import com.example.projjet.repository.TacheRepository;
@@ -25,7 +26,6 @@ public class TacheController {
 
             return tacheRepository.findAll();
         }
-
 
 
 
